@@ -1,0 +1,18 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: consumer-01
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.99.1:8848
+        namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+        group: DMP
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 2000
+        readTimeout: 2000

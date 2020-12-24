@@ -1,0 +1,15 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: mongo-app
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.99.1:8848
+        namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+        group: DMP
+
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@192.168.10.100:9999/admin
