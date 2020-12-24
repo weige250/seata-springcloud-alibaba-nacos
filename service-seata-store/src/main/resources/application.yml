@@ -1,0 +1,47 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: service-seata-store
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+        group: SEATA_GROUP
+
+  jackson:
+    #设置时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    #设置时区
+    time-zone: GMT+8
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/storeinfo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+    #-classpath:mapper/*Mapper.xml
+  #-classpath:mapper/*Dao.xml
+  typeAliasesPackage: com.zskj.microservice.seataservice.storeservice.entiy
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+seata:
+  enabled: true
+  application-id: service-seata-store
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+      serverAddr: 127.0.0.1:8848
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+      server-addr: 127.0.0.1:8848

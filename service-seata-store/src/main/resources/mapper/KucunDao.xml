@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zskj.microservice.seataservice.storeservice.dao.KucunDao">
+  <resultMap id="BaseResultMap" type="com.zskj.microservice.seataservice.storeservice.entiy.Kucun">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="productid" jdbcType="BIGINT" property="productid" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, productid, `count`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from kucun
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from kucun
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zskj.microservice.seataservice.storeservice.entiy.Kucun" useGeneratedKeys="true">
+    insert into kucun (productid, `count`)
+    values (#{productid,jdbcType=BIGINT}, #{count,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zskj.microservice.seataservice.storeservice.entiy.Kucun" useGeneratedKeys="true">
+    insert into kucun
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="count != null">
+        `count`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zskj.microservice.seataservice.storeservice.entiy.Kucun">
+    update kucun
+    <set>
+      <if test="productid != null">
+        productid = #{productid,jdbcType=BIGINT},
+      </if>
+      <if test="count != null">
+        `count` = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zskj.microservice.seataservice.storeservice.entiy.Kucun">
+    update kucun
+    set productid = #{productid,jdbcType=BIGINT},
+      `count` = #{count,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByProductId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kucun
+    where productid = #{productid,jdbcType=BIGINT}
+  </select>
+</mapper>

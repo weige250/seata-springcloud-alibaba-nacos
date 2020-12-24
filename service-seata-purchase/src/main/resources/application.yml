@@ -1,0 +1,29 @@
+server:
+  port: 9100
+spring:
+  application:
+    name: service-seata-purchase
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+        group: SEATA_GROUP
+
+seata:
+  enabled: true
+  application-id: service-seata-purchase
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+      serverAddr: 127.0.0.1:8848
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      namespace: e1c2fa58-6b69-4802-96cf-f446c37434aa
+      server-addr: 127.0.0.1:8848
+
