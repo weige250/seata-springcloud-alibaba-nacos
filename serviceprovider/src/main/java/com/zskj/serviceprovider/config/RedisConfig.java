@@ -39,6 +39,7 @@ public class RedisConfig  {
      */
     private static final Logger lg = LoggerFactory.getLogger(RedisConfig.class);
 
+/*
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         // 初始化缓存管理器，在这里我们可以缓存的整体过期时间什么的，我这里默认没有配置
@@ -48,9 +49,10 @@ public class RedisConfig  {
                 .fromConnectionFactory(redisConnectionFactory);
         return builder.build();
     }
+*/
 
 
-    @Bean
+/*    @Bean
     public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jedisConnectionFactory ) {
         //设置序列化
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
@@ -68,7 +70,7 @@ public class RedisConfig  {
         redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer); // Hash value序列化
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
-    }
+    }*/
 
 
     /**
@@ -76,6 +78,7 @@ public class RedisConfig  {
      * 不了解的同学可以去看@ConfigurationProperties和@Value的作用
      *
      */
+    /*
     class DataJedisProperties {
         @Value("${spring.redis.host}")
         private String host;
@@ -120,5 +123,5 @@ public class RedisConfig  {
             JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
             return jedisPool;
         }
-    }
+    }*/
 }
